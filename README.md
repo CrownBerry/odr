@@ -13,6 +13,7 @@ class OuterClass:
         print(inner.foo)
         self.foo = inner.foo
 ```
+### Don't forget to decorate argument with desired class
 But before create a instance of `OuterClass`, we need to register instance of InnerClass in our `IoC Container`:
 ```python
 from odr.container import register_as
