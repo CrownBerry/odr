@@ -40,4 +40,21 @@ inner = resolve(InnerClass)
 print(inner.foo)
 >>> 42
 ```
+Or, if we want to inject class inherit of InnerClass like this:
+```python
+class AnotherInnerClass(InnerClass):
+    def __init__(self):
+        super().__init__()
+```
+We can register it with base class via `register_as`:
+```python
+from odr.container import register_as
+
+another_inner = AnotherInnerClass()
+register_as(another_inner, InnerClass)
+
+new_outer = OuterClass()
+print(new_outer.foo)
+>>> 42
+```
 Enjoy!
