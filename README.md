@@ -1,4 +1,6 @@
 # Óðr
+## Desciprion
+Odr (Óðr) is a very simple realisation of Dependency Injection pattern with global IoC-Container and simple decorator to inject object.
 ## Install
 ```
 Work in progress
