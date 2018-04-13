@@ -3,7 +3,7 @@
 Odr (Óðr) is a very simple realisation of Dependency Injection pattern with global IoC-Container and simple decorator to inject object.
 ## Install
 ```
-Work in progress
+pip install odr
 ```
 ## Usage
 If we need outer class, depends on inner class, just use `@inject` decorator:
