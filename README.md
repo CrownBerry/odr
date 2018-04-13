@@ -21,15 +21,23 @@ class OuterClass:
 ##### Don't forget to decorate argument with desired class
 But before create a instance of `OuterClass`, we need to register instance of InnerClass in our `IoC Container`:
 ```python
-from odr.container import register_as
+from odr.container import register
 
 inner = InnerClass()
-register_as(inner, InnerClass)
+register(inner)
 ```
 And now, when we create instance of `OuterClass` inner will be correctly inject into it:
 ```python
 outer = OuterClass()
 print(outer.foo)
+>>> 42
+```
+However, if we want to get registered object from IoC-Container we can simple resolve it:
+```python
+from odr.container import resolve
+
+inner = resolve(InnerClass)
+print(inner.foo)
 >>> 42
 ```
 Enjoy!
