@@ -8,8 +8,9 @@ def inject(f):
         for name, arg_type in f.__annotations__.items():
             if type(arg_type) is type:
                 if arg_type in ioc_container:
-                    founded[name] = ioc_container[arg_type]
-                    # del kwargs[name]
+                    already_existed_args = [arg for arg in args if isinstance(arg, arg_type)]
+                    if not already_existed_args:
+                        founded[name] = ioc_container[arg_type]
             else:
                 print("{0} annotation `{1}` is not a type".format(name, arg_type))
         return f(*args, **founded, **kwargs)
