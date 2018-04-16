@@ -1,7 +1,9 @@
+from odr.exceptions import NoRegisterObjectException
+
 ioc_container = {}
-'''IoC-container is simple dictionary with type as keys, and object as values
-Notice, that type of value object can be not equal with key type. 
-Key type is just a 'label' for object to resolving and injecting it. '''
+''' IoC-container is simple dictionary with type as keys, and object as values.
+Notice, that type of value object can be not equal with key. 
+Object can be registered with base type or just with some type, not corresponding with this object. '''
 
 
 def register(obj: object):
@@ -21,4 +23,4 @@ def resolve(obj_class: type):
     if obj_class in ioc_container:
         return ioc_container[obj_class]
     else:
-        return None
+        raise NoRegisterObjectException

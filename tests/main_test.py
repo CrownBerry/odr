@@ -1,8 +1,8 @@
 import pytest
 
 from odr.container import register, register_as, resolve
-from odr.injector import inject
 from odr.exceptions import NoRegisterObjectException
+from odr.injector import inject
 
 
 class InnerClass:
@@ -36,7 +36,7 @@ class ExceptionalClass:
         self.foo = outer.foo
 
 
-class TestMain:
+class TestPositiveInjection:
     def test_register(self):
         a = InnerClass()
         register(a)
@@ -55,6 +55,8 @@ class TestMain:
         b = AnotherOuterClass(a)
         assert b.foo == 42
 
+
+class TestManualPassing:
     def test_pass_arg(self):
         a = InnerClass(32)
         b = OuterClass(a)
@@ -65,6 +67,12 @@ class TestMain:
         b = OuterClass(inner=a)
         assert b.foo == 24
 
-    def test_raise_exception(self):
+
+class TestExceptions:
+    def test_raise_exception_on_inject(self):
         with pytest.raises(NoRegisterObjectException):
             b = ExceptionalClass()
+
+    def test_raise_exception_on_resolve(self):
+        with pytest.raises(NoRegisterObjectException):
+            c = resolve(str)
