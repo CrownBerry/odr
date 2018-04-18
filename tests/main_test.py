@@ -1,6 +1,6 @@
 import pytest
 
-from odr.container import register, register_as, resolve, register_with_label
+from odr.registration import register, register_as, register_with_label, resolve
 from odr.exceptions import NoRegisterObjectException
 from tests.mocks import InnerClass, AnotherInnerClass, OuterClass, AnotherOuterClass, ExceptionalClass
 
